@@ -107,9 +107,9 @@
         }
 
         // ==================== GOOGLE DRIVE ====================
-        const DRIVE_CLIENT_ID = '1048860878818-srq77k0q63bbka6p9k0m55jah31gkmnt.apps.googleusercontent.com';
+        const DRIVE_CLIENT_ID = '648779760419-5j8hurgf3sq482gmgqtso6ttfg78cb9.apps.googleusercontent.com';
         const DRIVE_SCOPES    = 'https://www.googleapis.com/auth/drive.file';
-        const DRIVE_FOLDER    = 'NelsonApp_Backups';
+        const DRIVE_FOLDER    = 'Taller_Backups';
         let driveToken = null;
         let driveFolderId = null;
         let driveTokenClient = null;       // Cliente OAuth reutilizable (se crea una sola vez)
