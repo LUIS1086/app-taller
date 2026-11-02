@@ -33,8 +33,33 @@
 @media(max-width:520px){.invoice-panel{padding:15px;border-radius:18px}.invoice-grid{grid-template-columns:1fr}.invoice-field.full{grid-column:auto}.invoice-actions{flex-direction:column}.invoice-head h2{font-size:17px}}
 </style>
 
+<!-- Edición básica para talleres: recepción de equipos y seguimiento de órdenes. -->
+<style id="basic-workshop-edition">
+    body[data-edition="taller-basico"] #sidebar-cash,
+    body[data-edition="taller-basico"] #sidebar-meta-wrap-desktop,
+    body[data-edition="taller-basico"] #sidebar-btn-ventas,
+    body[data-edition="taller-basico"] #sidebar-nav > div[style*="margin-top:16px"],
+    body[data-edition="taller-basico"] #sidebar-footer,
+    body[data-edition="taller-basico"] #view-ventas,
+    body[data-edition="taller-basico"] #view-admin,
+    body[data-edition="taller-basico"] #nia-card,
+    body[data-edition="taller-basico"] #nia-fab,
+    body[data-edition="taller-basico"] #nia-modal,
+    body[data-edition="taller-basico"] #btn-ventas,
+    body[data-edition="taller-basico"] #header-cash-summary,
+    body[data-edition="taller-basico"] #modal-app-health,
+    body[data-edition="taller-basico"] #invoice-sale-modal,
+    body[data-edition="taller-basico"] #view-ordenes .quick-action.qa-blue,
+    body[data-edition="taller-basico"] #view-ordenes .quick-action.qa-orange {
+        display: none !important;
+    }
+    body[data-edition="taller-basico"] nav.bottom-nav-mobile {
+        justify-content: space-evenly;
+    }
+</style>
+
 </head>
-<body class="swipe-area dark-mode">
+<body class="swipe-area dark-mode" data-edition="taller-basico">
 
     <!-- BADGE OFFLINE/ONLINE -->
     <div id="net-badge"></div>
@@ -81,9 +106,9 @@
                 <span class="sidebar-nav-label">Caja &amp; Inventario</span>
                 <span class="sidebar-nav-count" id="sidebar-count-stock" style="display:none;">0</span>
             </div>
-            <div class="sidebar-nav-item" id="sidebar-btn-admin" onclick="tab('admin')">
+            <div class="sidebar-nav-item" id="sidebar-btn-admin" onclick="openCreatorZone()">
                 <span class="sidebar-nav-icon">⚙️</span>
-                <span class="sidebar-nav-label">Datos &amp; Config</span>
+                <span class="sidebar-nav-label">Zona del creador</span>
             </div>
 
             <!-- BREAKDOWN POR ESTADO -->
@@ -318,7 +343,7 @@
                     class="w-10 h-10 rounded-2xl bg-white/10 border border-white/10 flex items-center justify-center text-xl hover:bg-orange-500/20 hover:border-orange-500/40 active:scale-90 transition-all">
                     🌙
                 </button>
-                <div class="bg-emerald-500/10 px-4 py-2 rounded-2xl border border-emerald-500/20">
+                <div id="header-cash-summary" class="bg-emerald-500/10 px-4 py-2 rounded-2xl border border-emerald-500/20">
                     <p id="total-cash" class="text-emerald-400 font-black text-xl">$0</p>
                     <p class="text-[8px] font-bold opacity-60 text-right">CAJA NETA</p>
                 </div>
@@ -3090,13 +3115,13 @@
             </div>
             <span class="nav-label">Caja</span>
         </button>
-        <button onclick="tab('admin')" id="btn-admin" class="nav-btn">
+        <button onclick="openCreatorZone()" id="btn-admin" class="nav-btn" aria-label="Abrir zona del creador">
             <div class="nav-icon-wrap">
                 <!-- Engranaje más limpio -->
                 <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
                 <span id="nav-dot-admin" class="nav-dot" style="display:none;"></span>
             </div>
-            <span class="nav-label">Datos</span>
+            <span class="nav-label">Creador</span>
         </button>
     </nav>
 
@@ -3267,7 +3292,7 @@
 <script src="js/modules/42-ios-iconos.js"></script>
 <script src="js/modules/45-selector-ios.js"></script>
 
-    <script src="js/nelson-ia.js"></script>
+    <!-- La edición básica no carga el asistente de IA. -->
 
 </body>
 </html>
