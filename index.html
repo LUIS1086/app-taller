@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link rel="manifest" href="manifest.json">
+    <link id="app-manifest" rel="manifest" href="manifest.json">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Cell Service">
@@ -412,7 +412,7 @@
                         </div>
                         <div id="diagnosis-suggestions" class="suggestion-box"></div>
                         <div class="cell-intake-grid">
-                            <label class="cell-field cell-field-wide">IMEI del equipo <span>Opcional · verifica solo IMEI de 15 dígitos</span><div class="imei-action-row"><input id="c-imei" type="text" inputmode="numeric" maxlength="24" placeholder="15 dígitos" autocomplete="off" oninput="resetImeiCheck('new')"><button type="button" class="imei-check-button" onclick="openImeiColombia('c-imei')">Verificar en IMEI Colombia</button></div><select id="c-imei-status" class="edit-imei-status" aria-label="Resultado de consulta IMEI" onchange="recordImeiCheck('new')"><option value="pendiente">Resultado: pendiente de consulta</option><option value="sin-reporte">Resultado: sin reporte negativo</option><option value="reportado">Resultado: aparece reportado o con novedad</option><option value="sin-resultado">Resultado: no fue posible consultar</option></select><input type="hidden" id="c-imei-checked-at"><span class="imei-privacy-note">Se abre el portal público en otra pestaña y se copia el IMEI para pegarlo allí. El resultado se registra manualmente.</span></label>
+                            <label class="cell-field cell-field-wide">IMEI del equipo <span>Opcional · verifica solo IMEI de 15 dígitos</span><div class="imei-action-row"><input id="c-imei" type="text" inputmode="numeric" maxlength="24" placeholder="15 dígitos" autocomplete="off" oninput="resetImeiCheck('new')"><button type="button" class="imei-check-button" onclick="openImeiColombia('c-imei')">Verificar en IMEI Colombia</button></div><select id="c-imei-status" class="edit-imei-status" aria-label="Resultado de consulta IMEI" onchange="recordImeiCheck('new')"><option value="pendiente">Resultado: pendiente de consulta</option><option value="sin-reporte">Resultado: sin reporte negativo</option><option value="reportado">Resultado: reportado en base negativa</option><option value="sin-resultado">Resultado: no fue posible consultar</option></select><input type="hidden" id="c-imei-checked-at"><span class="imei-privacy-note">Se abre el portal en otra pestaña y se copia el IMEI para pegarlo allí. Completa el CAPTCHA del sitio y registra el resultado manualmente.</span></label>
                             <label class="cell-field">Color <span>Opcional</span><input id="c-color" type="text" placeholder="Ej: negro, azul" autocomplete="off"></label>
                             <label class="cell-field cell-field-wide">Accesorios recibidos <span>Solo los que quedan en el taller</span><input id="c-accesorios" type="text" placeholder="Ej: funda, SIM, cargador" autocomplete="off"></label>
                             <fieldset class="cell-condition cell-field-wide"><legend>Estado visible al recibir</legend>
@@ -900,7 +900,7 @@
                                 <p style="font-size:15px;font-weight:900;color:#f1f5f9;margin:0;letter-spacing:-0.3px;">Luis Eduardo Gaviria</p>
                                 <p style="font-size:10px;color:#64748b;margin:3px 0 0;font-weight:700;display:flex;align-items:center;gap:6px;">
                                     <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#10b981;box-shadow:0 0 6px rgba(16,185,129,0.6);animation:pulseDot 2s ease-in-out infinite;"></span>
-                                    Cell Service · <span id="credits-version">v3.9.0</span>
+                                    <span id="credits-app-name">Cell Service</span> · <span id="credits-version">v3.9.0</span>
                                 </p>
                             </div>
                             <span id="credits-arrow" style="font-size:14px;color:#64748b;transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);flex-shrink:0;">▼</span>
@@ -1781,11 +1781,11 @@
                         <div class="edit-field edit-field-wide">
                             <label for="edit-imei">IMEI del equipo</label>
                             <div class="imei-action-row"><input type="text" id="edit-imei" inputmode="numeric" maxlength="24" autocomplete="off" placeholder="15 dígitos" oninput="resetImeiCheck('edit')"><button type="button" class="imei-check-button" onclick="openImeiColombia('edit-imei')">Verificar en IMEI Colombia</button></div>
-                            <span class="edit-field-help">La consulta se abre aparte; pega el IMEI en el portal y registra abajo lo que muestra.</span>
+                            <span class="edit-field-help">La consulta se abre aparte; pega el IMEI, completa el CAPTCHA del portal y registra abajo lo que muestra.</span>
                             <select id="edit-imei-status" class="edit-imei-status" aria-label="Resultado de consulta IMEI" onchange="recordImeiCheck('edit')">
                                 <option value="pendiente">Resultado: pendiente de consulta</option>
                                 <option value="sin-reporte">Resultado: sin reporte negativo</option>
-                                <option value="reportado">Resultado: aparece reportado o con novedad</option>
+                                <option value="reportado">Resultado: reportado en base negativa</option>
                                 <option value="sin-resultado">Resultado: no fue posible consultar</option>
                             </select><input type="hidden" id="edit-imei-checked-at">
                             <span class="imei-privacy-note">La consulta es manual. Un resultado sin reporte negativo no confirma propiedad ni reemplaza la revisión con el operador.</span>
@@ -2095,6 +2095,12 @@
                 <div id="creator-zone-gate"></div>
                 <div id="creator-zone-editor" class="hidden space-y-4">
                     <p class="rounded-xl border border-cyan-400/15 bg-cyan-400/5 p-3 text-[10px] leading-relaxed text-cyan-100">Estos datos aparecen en los comprobantes, mensajes y seguimiento. El PIN de creador protege esta sección en este dispositivo.</p>
+                    <section class="rounded-2xl border border-cyan-400/20 bg-cyan-400/5 p-4 space-y-2">
+                        <h4 class="text-xs font-black uppercase tracking-wide text-cyan-200">Marca de la aplicación</h4>
+                        <label for="config-app-name" class="block text-[11px] font-bold text-slate-300">Nombre que verá cada cliente en la pestaña y al instalarla</label>
+                        <input id="config-app-name" type="text" maxlength="40" placeholder="Ej. Taller Móvil Pro" class="w-full">
+                        <p class="text-[10px] leading-relaxed text-slate-400">Este nombre es independiente del nombre comercial que aparece en órdenes y comprobantes.</p>
+                    </section>
                     <div id="creator-business-mount" class="space-y-3"></div>
                     <details class="rounded-xl border border-white/10 p-3"><summary class="cursor-pointer text-xs font-bold text-slate-300">Cambiar PIN de creador</summary><div class="mt-3 space-y-3"><input id="creator-current-pin" type="password" autocomplete="current-password" placeholder="PIN actual de creador" class="w-full"><input id="creator-new-pin" type="password" autocomplete="new-password" placeholder="Nuevo PIN o frase (6 a 24 caracteres)" class="w-full"><input id="creator-confirm-pin" type="password" autocomplete="new-password" placeholder="Confirma el nuevo PIN" class="w-full"><button onclick="changeCreatorPin()" class="w-full rounded-xl bg-slate-700 py-2.5 text-xs font-black text-white">Actualizar PIN</button></div></details>
                 </div>
