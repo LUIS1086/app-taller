@@ -199,7 +199,7 @@
                 if (sEl) sEl.classList.toggle('active', name === t);
             });
             // Sync desktop topbar title
-            const tabTitles = { taller:'Nueva Recepción', ordenes:'Órdenes', ventas:'Caja & Inventario', admin:'Datos & Config' };
+            const tabTitles = { taller:'Nueva Recepción', ordenes:'Órdenes', ventas:'Caja & Inventario', admin:'Nube y seguimiento' };
             const dtTitle = document.getElementById('desktop-topbar-title');
             if (dtTitle) dtTitle.innerText = tabTitles[t] || 'CELL SERVICE';
             window.scrollTo(0,0);
