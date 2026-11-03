@@ -259,7 +259,7 @@
         <div class="splash-title" id="splash-biz-name">CELL SERVICE</div>
         <div class="splash-sub">Servicio técnico de celulares</div>
         <div class="splash-bar-track"><div class="splash-bar-fill"></div></div>
-        <div class="splash-version" id="splash-version">v3.8.6</div>
+        <div class="splash-version" id="splash-version">v3.10.1</div>
     </div>
 
     <!-- PIN MODAL -->
@@ -754,6 +754,10 @@
                 <strong class="block text-sm text-emerald-300">☁️ Copia en Supabase</strong>
                 <span class="mt-1 block text-xs text-slate-400">Crear una copia manual, activar respaldo automático o restaurar.</span>
             </button>
+            <button type="button" onclick="openTecnicosNube()" class="w-full rounded-xl border border-amber-400/20 bg-amber-500/10 p-4 text-left">
+                <strong class="block text-sm text-amber-300">👷 Técnicos</strong>
+                <span class="mt-1 block text-xs text-slate-400">Agregar técnicos, ver su carga de trabajo, comisiones y contactarlos.</span>
+            </button>
             <button type="button" onclick="openCreatorZone()" class="w-full rounded-xl border border-white/10 bg-white/5 p-3 text-left text-xs font-bold text-slate-300">
                 🔐 Zona del creador · Datos y marca del negocio
             </button>
@@ -944,7 +948,7 @@
                                 <p style="font-size:15px;font-weight:900;color:#f1f5f9;margin:0;letter-spacing:-0.3px;">Luis Eduardo Gaviria</p>
                                 <p style="font-size:10px;color:#64748b;margin:3px 0 0;font-weight:700;display:flex;align-items:center;gap:6px;">
                                     <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#10b981;box-shadow:0 0 6px rgba(16,185,129,0.6);animation:pulseDot 2s ease-in-out infinite;"></span>
-                                    <span id="credits-app-name">Cell Service</span> · <span id="credits-version">v3.9.0</span>
+                                    <span id="credits-app-name">Cell Service</span> · <span id="credits-version">v3.10.1</span>
                                 </p>
                             </div>
                             <span id="credits-arrow" style="font-size:14px;color:#64748b;transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);flex-shrink:0;">▼</span>
@@ -2451,7 +2455,7 @@
                         <div class="cfg-title-wrap">
                             <p class="cfg-eyebrow">
                                 <span id="cfg-header-biz">Cell Service</span>
-                                <span class="cfg-version" id="cfg-header-version">v3.9.0</span>
+                                <span class="cfg-version" id="cfg-header-version">v3.10.1</span>
                             </p>
                             <h3 class="cfg-h1">Configuración</h3>
                         </div>
@@ -3309,6 +3313,7 @@
 <script src="js/modules/40-seguimiento.js"></script>
 <script src="js/modules/41-respaldo-supabase.js"></script>
 <script src="js/modules/42-ios-iconos.js"></script>
+<script src="js/modules/43-tecnicos-nube.js"></script>
 <script src="js/modules/45-selector-ios.js"></script>
 
     <!-- La edición básica no carga el asistente de IA. -->
