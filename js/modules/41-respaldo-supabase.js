@@ -58,6 +58,7 @@
       if (i % 25 === 0) await nap();
     }
     data.orders = orders;
+    try { data.tecnicos = JSON.parse(localStorage.getItem('tecnicos') || '[]'); data.tecnicosPerfil = JSON.parse(localStorage.getItem('tecnicosPerfil') || '{}'); } catch (e) { /* sin técnicos */ }
     return { data, photos };
   }
 
@@ -154,6 +155,7 @@
       for (const k of ['sales', 'gastos', 'clientes', 'payments', 'calificaciones', 'stockHistory', 'orderChat', 'paymentPlans']) for (const r of data[k]) await put(k, r);
       if (typeof _migrateStockFields === 'function') await _migrateStockFields();
       try { if (typeof updateTotal === 'function') await updateTotal(); if (typeof updateSuggestions === 'function') await updateSuggestions(); if (typeof renderCartera === 'function') await renderCartera(); } catch (e) { /* la recarga lo rehace */ }
+      if (Array.isArray(data.tecnicos)) { localStorage.setItem('tecnicos', JSON.stringify(data.tecnicos.filter(t => typeof t === 'string'))); if (data.tecnicosPerfil && typeof data.tecnicosPerfil === 'object') localStorage.setItem('tecnicosPerfil', JSON.stringify(data.tecnicosPerfil)); }
     } catch (e) { window._segPausa = false; throw e; }
     return { ordenes: data.orders.length, fotos: list.length - sinFoto, sinFoto };
   }
